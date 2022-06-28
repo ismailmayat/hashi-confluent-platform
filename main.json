@@ -2,7 +2,7 @@
   "variables": {
     "aws_access_key": "",
     "aws_secret_key": "",
-    "aws_region": "us-east-2",
+    "aws_region": "eu-west-1",
     "aws_user": "",
 
     "vagrant_source_path": "ubuntu/bionic64"

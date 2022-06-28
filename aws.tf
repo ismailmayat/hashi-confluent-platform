@@ -20,6 +20,18 @@ variable "user" {
   description = "User name"
 }
 
+variable "owner" {
+  type = string
+  description = "Owner name"
+  default = "Ismail Mayat"
+}
+
+variable "owner_email" {
+  type = string
+  description = "Owner name"
+  default ="imayat@confluent.io"
+}
+
 variable "key_name" {
   type        = string
   description = "Key pair name"
@@ -27,7 +39,7 @@ variable "key_name" {
 
 provider "aws" {
   profile = "default"
-  region  = "us-east-2"
+  region  = "eu-west-1"
 }
 
 resource "aws_instance" "zk" {
@@ -37,6 +49,9 @@ resource "aws_instance" "zk" {
   instance_type = var.zk_instance_type
   tags = {
     Name = "${var.user}-zk${count.index}"
+    Owner = "${var.owner}"
+    Owner_Email ="${var.owner_email}"
+
   }
   key_name = var.key_name
 }
@@ -47,6 +62,8 @@ resource "aws_instance" "broker" {
   instance_type = var.broker_instance_type
   tags = {
     Name = "${var.user}-broker${count.index}"
+    Owner = "${var.owner}"
+    Owner_Email ="${var.owner_email}"
   }
   key_name = var.key_name
 }
@@ -56,6 +73,8 @@ resource "aws_instance" "c3" {
   instance_type = var.broker_instance_type
   tags = {
     Name = "${var.user}-c3"
+    Owner = "${var.owner}"
+    Owner_Email ="${var.owner_email}"
   }
   key_name = var.key_name
 }
